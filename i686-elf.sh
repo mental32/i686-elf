@@ -58,18 +58,12 @@ function compileBinutils {
     cd build-binutils-$BINUTILS_VERSION
     
     configureArgs="--target=i686-elf --with-sysroot --disable-nls --disable-werror --prefix=$BUILD_DIR/$1/output"
-    
-    # Configure
-    echo "        Configuring binutils (binutils_configure.log)"
-    ../binutils-$BINUTILS_VERSION/configure $configureArgs >> binutils_configure.log
 
-    # Make
-    echo "        Making (binutils_make.log)"
-    make >> binutils_make.log
+    ../binutils-$BINUTILS_VERSION/configure $configureArgs
 
-    # Install
-    echo "        Installing (binutils_install.log)"
-    sudo make install >> binutils_install.log
+    make
+
+    sudo make install
     cd ..
 }
 
@@ -80,27 +74,17 @@ function compileGCC {
     cd build-gcc-$GCC_VERSION
     
     configureArgs="--target=i686-elf --disable-nls --enable-languages=c,c++ --without-headers --prefix=$BUILD_DIR/$1/output"
-    
-    # Configure
-    echo "        Configuring gcc (gcc_configure.log)"
+
     ../gcc-$GCC_VERSION/configure $configureArgs >> gcc_configure.log
     
-    # Make GCC
-    echo "        Making gcc (gcc_make.log)"
-    make all-gcc >> gcc_make.log
-    
-    # Install GCC
-    echo "        Installing gcc (gdb_install.log)"
-    sudo make install-gcc >> gcc_install.log
-    
-    # Make libgcc
-    echo "        Making libgcc (libgcc_make.log)"
-    make all-target-libgcc >> libgcc_make.log
-    
-    # Install libgcc
-    echo "        Installing libgcc (libgcc_install.log)"
-    sudo make install-target-libgcc >> libgcc_install.log
-    
+    make all-gcc
+
+    sudo make install-gcc
+
+    make all-target-libgcc
+
+    sudo make install-target-libgcc
+
     cd ..
 }
 
@@ -111,18 +95,12 @@ function compileGDB {
 
     mkdir -p build-gdb-$GDB_VERSION
     cd build-gdb-$GDB_VERSION
-    
-    # Configure        
-    echo "        Configuring (gdb_configure.log)"
-    ../gdb-$GDB_VERSION/configure $configureArgs >> gdb_configure.log
-    
-    # Make
-    echo "        Making (gdb_make.log)"
-    make >> gdb_make.log
-    
-    # Install
-    echo "        Installing (gdb_install.log)"
-    sudo make install >> gdb_install.log
+
+    ../gdb-$GDB_VERSION/configure $configureArgs
+
+    make
+
+    sudo make install
     cd ..
 }
 
