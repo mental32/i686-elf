@@ -15,7 +15,7 @@ After the script finishes the running user will have a new directory `build-i686
 This should only contain a directory named `output`. Treat anything else inside as disposable **except for the output directory.**
 
 Then just add it to your PATH (append this to the end of your .rc file)
- - `export PATH="$PATH:~/build-i686-elf/output`
+ - `export PATH="~/build-i686-elf/output/bin:${PATH}"`
 
 ## other solutions
  - [i686-elf-tools](https://github.com/lordmilko/i686-elf-tools) (debian based toolkit)
