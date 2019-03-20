@@ -1,22 +1,32 @@
 # i686-elf
-# lightweight cross compiler toolkit
+## lightweight cross compiler toolkit
 
-i686-elf provides an extreemly lightweight solution to building a i686 cross compiler.
+This project attempts to provide multiple ways to build and setup a cross compiler toolchain.
+
+## Requirements
+
+Most if not all of the requirements, both required and optional, should already be on installed.
+
+### Required
+
+ - wget
+ - make
+ - tar
+
 
 ## Usage
 
-git clone + run:
- - `git clone https://github.com/mental32/i686-elf && cd i686-elf && ./i686-elf.sh`
+ - git clone + run:
+   - `git clone https://github.com/mental32/i686-elf && cd i686-elf && ./local.sh`
 
-wget + run:
- - `sh -c "$(wget https://raw.githubusercontent.com/mental32/i686-elf/master/i686-elf.sh -O -)"`
+ - wget + run:
+   - `sh -c "$(wget https://raw.githubusercontent.com/mental32/i686-elf/master/portable.sh -O -)"`
 
-After the script finishes the running user will have a new directory `build-i686-elf` in their home directory.
-This should only contain a directory named `output`. Treat anything else inside as disposable **except for the output directory.**
+### Persisting in PATH
 
-Then just add it to your PATH (append this to the end of your .rc file)
- - `export PATH="~/build-i686-elf/output/bin:${PATH}"`
+To persist access to the binaries in PATH append the following to your .rc file:
+ - `export PATH="$PATH:~/.i686-elf/bin`
 
-## other solutions
+## Related projects
  - [i686-elf-tools](https://github.com/lordmilko/i686-elf-tools) (debian based toolkit)
  - [barebones-toolchain](https://github.com/rm-hull/barebones-toolchain) (barebones gcc cross-compiler and toolchain for multiple architectures)
